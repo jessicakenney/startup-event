@@ -56,6 +56,14 @@ public class EventTest {
     assertEquals(2, Event.getAll().size());
   }
 
+  @Test
+  public void getAll_returnsEventName_True() throws Exception {
+    Event testEvent = newEvent();
+    Event testEvent2 = newEvent2();
+    assertEquals("name1", Event.getAll().get(0).getName());
+    assertEquals("name2", Event.getAll().get(1).getName());
+  }
+
 
 //  @Test
 //  public void getId_newEventCreatesId_int() throws Exception {
