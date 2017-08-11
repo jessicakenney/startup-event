@@ -8,7 +8,13 @@ public class Event {
   private ArrayList<String> attendees;
 
   public Event(String name, String description, ArrayList<String>attendees) {
+    this.name = name;
+    this.description = description;
+    this.attendees = attendees;
+  }
 
+  public String getName(){
+    return "foo";
   }
 
 }
