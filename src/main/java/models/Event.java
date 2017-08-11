@@ -47,6 +47,9 @@ public class Event {
   public String updateName(String newName){
     return newName;
   }
+  public String updateDescription(String newDescription){
+    return newDescription;
+  }
 
   public void deleteAttendee(String attendee ){
     attendees.remove(attendee);

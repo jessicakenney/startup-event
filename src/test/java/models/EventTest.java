@@ -87,6 +87,14 @@ public class EventTest {
   }
 
   @Test
+  public void updateDescription_updatesCorrectly_True() throws Exception {
+    Event testEvent = newEvent();
+    Event testEvent2 = newEvent2();
+    assertEquals("Plus", testEvent2.updateDescription("Plus"));
+    assertEquals("Plus", testEvent2.getDescription());
+  }
+
+  @Test
   public void deleteAttendee_RemovesNameCorrectly_True() throws Exception {
     Event testEvent = newEvent2();
     ArrayList<String> expected = new ArrayList<String>(Arrays.asList("dog"));
