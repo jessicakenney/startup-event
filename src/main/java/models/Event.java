@@ -42,5 +42,8 @@ public class Event {
   public static Event findById(int id){
    return instances.get(id -1);
   }
+  public String updateName(String newName){
+    return "foo";
+  }
 }
 

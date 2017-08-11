@@ -77,6 +77,15 @@ public class EventTest {
     assertEquals("Event2", Event.findById(2).getName());
   }
 
+  @Test
+  public void updateName_updatesCorrectly_True() throws Exception {
+    Event testEvent = newEvent();
+    Event testEvent2 = newEvent2();
+    assertEquals("Event2-Plus", testEvent2.updateName("Event2-Plus"));
+    assertEquals("description2", testEvent2.getDescription());
+    assertEquals("Event1", testEvent.getName());
+  }
+
 
 
 
