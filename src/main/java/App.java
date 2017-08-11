@@ -16,7 +16,7 @@ public class App {
   public static void main(String[] args) {
     staticFileLocation ("/public");
 
-   //get Dashboard homepage
+   //get Dashboard homepage, shows all posts
     get ("/events", (req, resp) -> {
       Map<String, Object> model = new HashMap<>();
       ArrayList<Event> events = Event.getAll();
@@ -40,6 +40,29 @@ public class App {
       model.put("event", newEvent);
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
+
+    //get: show an individual Event
+    get("/events/:id", (request, response) ->  {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(request.params("id"));
+      Event findEvent = Event.findById(eventId);
+      model.put("event", findEvent);
+      return new ModelAndView(model, "event-detail.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //get: show a form to update a Event
+    get("/events/:id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(request.params("id"));
+      Event editEvent = Event.findById(eventId);
+      model.put("editEvent", editEvent);
+      return new ModelAndView(model, "event-form.hbs");
+    }, new HandlebarsTemplateEngine());
+
+
+
+
+
 
 
   }
