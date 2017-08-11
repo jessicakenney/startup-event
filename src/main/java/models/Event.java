@@ -17,7 +17,7 @@ public class Event {
     return name;
   }
   public String getDescription(){
-    return name;
+    return description;
   }
 
 }
