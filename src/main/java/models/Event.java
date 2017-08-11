@@ -14,7 +14,7 @@ public class Event {
   }
 
   public String getName(){
-    return "foo";
+    return name;
   }
 
 }

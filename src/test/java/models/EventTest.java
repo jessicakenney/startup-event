@@ -29,7 +29,7 @@ public class EventTest {
   @Test
   public void getName_returnsNewEventName_True() throws Exception {
     Event testEvent = newEvent();
-    assertEquals("event1", testEvent.getName());
+    assertEquals("Event1", testEvent.getName());
   }
 
 
