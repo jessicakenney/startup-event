@@ -21,10 +21,11 @@ to change it's name. Updating attendees is a secondary feature.
 | New Event created with attendees |[name1,name2,name3] | [name1,name2,name3] |
 | Two events created successfully |[event1, event2] | true |
 | Return all Events |[event1,event2] | [event1,event2]  |
-
 | Events created with unique id  |[event1] | [event1 id |
-| Two events created with unique id  |[event1, event2] | [ 1,2]|
-| Event name update  |[event1, editName] | [event1, editName] |
+| Find event by id  |[2] | [event2]|
+| Event name update  |[event1, editName] | [editName] |
+| Delete name  |[name1, name2] | [name1] |
+| Add name  |[name1,name2] | [name1,name2,name3] |
 
 
 
