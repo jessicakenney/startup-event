@@ -37,7 +37,7 @@ public class Event {
   }
 
   public int getId(){
-    return 5;
+    return id;
   }
 }
 
