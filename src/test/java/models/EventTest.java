@@ -41,7 +41,8 @@ public class EventTest {
   @Test
   public void getAttendees_returnsNewEventAttendees_True() throws Exception {
     Event testEvent = newEvent();
-    assertEquals("names", testEvent.getAttendees());
+    ArrayList<String> expected = new ArrayList<String>(Arrays.asList("name1","name2"));
+    assertEquals(expected, testEvent.getAttendees());
   }
 
 
