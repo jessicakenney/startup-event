@@ -5,8 +5,9 @@
     {{#if events}}
         {{#each events}}
         <div class = "well">
-            <p>{{name}} <a href="/events/{{id}}">Event details...</a></p>
+            <p>{{name}}
             <p>{{description}}</p>
+            <a href="/events/{{id}}">Event details...</a></p>
         </div>
         {{/each}}
     {{else}}
@@ -15,7 +16,6 @@
 
     <footer class="footer">
         <div class="container">
-            <!--<p class="text-muted"><a href="/events/delete">DELETE ALL Events</a></p>-->
         </div>
     </footer>
 {{/partial}}
