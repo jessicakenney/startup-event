@@ -97,7 +97,7 @@ public class EventTest {
   @Test
   public void addAttendee_AddNameCorrectly_True() throws Exception {
     Event testEvent = newEvent2();
-    ArrayList<String> expected = new ArrayList<String>(Arrays.asList("dog","cat","chicken"));
+    ArrayList<String> expected = new ArrayList<String>(Arrays.asList("cat","dog","chicken"));
     testEvent.addAttendee("chicken");
     assertEquals(expected, testEvent.getAttendees());
   }
