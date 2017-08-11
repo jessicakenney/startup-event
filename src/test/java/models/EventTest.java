@@ -64,13 +64,11 @@ public class EventTest {
     assertEquals("Event2", Event.getAll().get(1).getName());
   }
 
-
-//  @Test
-//  public void getId_newEventCreatesId_int() throws Exception {
-//    Event.clearAllEvents;
-//    Event testEvent = newEvent();
-//    assertEquals(1, testEvent.getId());
-//  }
+  @Test
+  public void getId_newEventCreatesId_int() throws Exception {
+    Event testEvent = newEvent();
+    assertEquals(1, testEvent.getId());
+  }
 
 
 

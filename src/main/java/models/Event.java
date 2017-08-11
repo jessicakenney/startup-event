@@ -8,11 +8,14 @@ public class Event {
   private String description;
   private ArrayList<String> attendees;
   private static ArrayList<Event> instances = new ArrayList<>();
+  int id;
+
   public Event(String name, String description, ArrayList<String>attendees) {
     this.name = name;
     this.description = description;
     this.attendees = attendees;
     instances.add(this);
+    this.id = instances.size();
   }
 
   public String getName(){
@@ -31,6 +34,10 @@ public class Event {
 
   public static void clearAll (){
     instances.clear();
+  }
+
+  public int getId(){
+    return 5;
   }
 }
 
