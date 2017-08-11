@@ -43,7 +43,7 @@ public class Event {
    return instances.get(id -1);
   }
   public String updateName(String newName){
-    return "foo";
+    return newName;
   }
 }
 
