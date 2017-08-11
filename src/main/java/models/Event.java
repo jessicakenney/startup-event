@@ -44,11 +44,11 @@ public class Event {
    return instances.get(id -1);
   }
 
-  public String updateName(String newName){
-    return newName;
+  public void updateName(String newName){
+    this.name = newName;
   }
-  public String updateDescription(String newDescription){
-    return newDescription;
+  public void updateDescription(String newDescription){
+    this.description = newDescription;
   }
 
   public void deleteAttendee(String attendee ){

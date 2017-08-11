@@ -80,18 +80,15 @@ public class EventTest {
   @Test
   public void updateName_updatesCorrectly_True() throws Exception {
     Event testEvent = newEvent();
-    Event testEvent2 = newEvent2();
-    assertEquals("Event2-Plus", testEvent2.updateName("Event2-Plus"));
-    assertEquals("description2", testEvent2.getDescription());
-    assertEquals("Event1", testEvent.getName());
+    testEvent.updateName("Event2-Plus");
+    assertEquals("Event2-Plus", testEvent.getName());
   }
 
   @Test
   public void updateDescription_updatesCorrectly_True() throws Exception {
     Event testEvent = newEvent();
-    Event testEvent2 = newEvent2();
-    assertEquals("Plus", testEvent2.updateDescription("Plus"));
-    assertEquals("Plus", testEvent2.getDescription());
+    testEvent.updateDescription("plus");
+    assertEquals("plus", testEvent.getDescription());
   }
 
   @Test
