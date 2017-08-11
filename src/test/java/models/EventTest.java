@@ -19,6 +19,10 @@ public class EventTest {
     ArrayList<String> names = new ArrayList<String>(Arrays.asList("name1","name2"));
     return new Event("Event1", "description1", names);
   }
+  public Event newEvent2() {
+    ArrayList<String> names = new ArrayList<String>(Arrays.asList("cat","dog"));
+    return new Event("Event2", "description2", names);
+  }
 
   @Test
   public void newEvent_InstantiatesCorrectly_true() throws Exception {
@@ -44,6 +48,21 @@ public class EventTest {
     ArrayList<String> expected = new ArrayList<String>(Arrays.asList("name1","name2"));
     assertEquals(expected, testEvent.getAttendees());
   }
+
+  @Test
+  public void getAll_returnsAllEvents_True() throws Exception {
+    Event testEvent = newEvent();
+    Event testEvent2 = newEvent2();
+    assertEquals(2, Event.getAll().size());
+  }
+
+
+//  @Test
+//  public void getId_newEventCreatesId_int() throws Exception {
+//    Event.clearAllEvents;
+//    Event testEvent = newEvent();
+//    assertEquals(1, testEvent.getId());
+//  }
 
 
 
