@@ -16,6 +16,9 @@ public class Event {
   public String getName(){
     return name;
   }
+  public String getDescription(){
+    return name;
+  }
 
 }
 

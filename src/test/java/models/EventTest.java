@@ -32,6 +32,12 @@ public class EventTest {
     assertEquals("Event1", testEvent.getName());
   }
 
+  @Test
+  public void getDescription_returnsNewEventDescription_True() throws Exception {
+    Event testEvent = newEvent();
+    assertEquals("description1", testEvent.getDescription());
+  }
+
 
 
 
