@@ -1,5 +1,6 @@
 package models;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Event {
@@ -18,6 +19,9 @@ public class Event {
   }
   public String getDescription(){
     return description;
+  }
+  public ArrayList<String> getAttendees(){
+    return attendees;
   }
 
 }

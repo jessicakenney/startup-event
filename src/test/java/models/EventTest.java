@@ -38,6 +38,12 @@ public class EventTest {
     assertEquals("description1", testEvent.getDescription());
   }
 
+  @Test
+  public void getAttendees_returnsNewEventAttendees_True() throws Exception {
+    Event testEvent = newEvent();
+    assertEquals("names", testEvent.getAttendees());
+  }
+
 
 
 
