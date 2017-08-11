@@ -12,7 +12,7 @@ public class EventTest {
 
   @After
   public void tearDown() throws Exception {
-    //Event.clearAllPosts(); //clear out allll the posts before each test.
+    Event.clearAll();
   }
   //helper
   public Event newEvent() {
