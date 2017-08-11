@@ -1,0 +1,41 @@
+{{#block "header"}}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{#block "title"}}Startup Event Dashboard{{/block}}</title>
+
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+{{/block}}
+
+    <div class="container">
+
+    <!--begin main template-->
+        <div class="page-header">
+            <!--<img src="/images/banner.jpg" width="100%">-->
+            <h1>StartUp Weekend Dashboard</h1>
+        </div>
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="/events/new">Add Event</a></li>
+            <li role="presentation"><a href="/events">All Events</a></li>
+            <li role="presentation"><a href="/">Startup Weekend Event Details</a></li>
+        </ul>
+
+        <div class="col-md-12">
+        {{#block "content"}}
+
+        {{/block}}
+        </div>
+
+    <!--end main template-->
+        {{#block "footer"}}
+        {{/block}}
+
+    </body>
+    </html>

@@ -1,0 +1,23 @@
+{{#partial "content"}}
+
+    <h2>Event List</h2>
+
+    {{#if events}}
+        {{#each events}}
+        <div class = "well">
+            <p>{{name}} <a href="/events/{{id}}">Event details...</a></p>
+            <p>{{description}}</p>
+        </div>
+        {{/each}}
+    {{else}}
+    <p>No Events Posted</p>
+    {{/if}}
+
+    <footer class="footer">
+        <div class="container">
+            <!--<p class="text-muted"><a href="/events/delete">DELETE ALL Events</a></p>-->
+        </div>
+    </footer>
+{{/partial}}
+
+{{> layout.hbs}}
