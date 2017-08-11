@@ -4,10 +4,12 @@
 
     {{#if events}}
         {{#each events}}
+        <div class="col-md-4">
         <div class = "well">
             <p>{{name}}
             <p>{{description}}</p>
             <a href="/events/{{id}}">Event details...</a></p>
+        </div>
         </div>
         {{/each}}
     {{else}}
