@@ -74,7 +74,7 @@ public class EventTest {
   public void findEventById_returnsEvent_True() throws Exception {
     Event testEvent = newEvent();
     Event testEvent2 = newEvent2();
-    assertEquals("Event1", Event.findById(2).getName());
+    assertEquals("Event2", Event.findById(2).getName());
   }
 
 
