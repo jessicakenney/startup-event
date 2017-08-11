@@ -89,8 +89,16 @@ public class EventTest {
   @Test
   public void deleteAttendee_RemovesNameCorrectly_True() throws Exception {
     Event testEvent = newEvent2();
-    ArrayList<String> expected = new ArrayList<String>(Arrays.asList("Dog"));
+    ArrayList<String> expected = new ArrayList<String>(Arrays.asList("dog"));
     testEvent.deleteAttendee("cat");
+    assertEquals(expected, testEvent.getAttendees());
+  }
+
+  @Test
+  public void addAttendee_AddNameCorrectly_True() throws Exception {
+    Event testEvent = newEvent2();
+    ArrayList<String> expected = new ArrayList<String>(Arrays.asList("dog","cat","chicken"));
+    testEvent.addAttendee("chicken");
     assertEquals(expected, testEvent.getAttendees());
   }
 

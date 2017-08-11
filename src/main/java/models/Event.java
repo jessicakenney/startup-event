@@ -52,5 +52,9 @@ public class Event {
     attendees.remove(attendee);
   }
 
+  public void addAttendee(String attendee ){
+    attendees.add(attendee);
+  }
+
 }
 
