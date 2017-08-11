@@ -1,14 +1,22 @@
 {{#partial "content"}}
-
+  <div class="well">
     <h4>Name:</h4>
     <p>{{event.name}}</p>
     <h4>Description:</h4>
     <p> {{event.description}}</p>
     <a href="/events/{{event.id}}/update">Edit</a>
+  </div>
 
+  <div class="well">
     <h4>Attendees:</h4>
-    <p> {{ event.attendees}}</p>
-    <a href="/events/{{event.id}}/Add Attendee">Edit</a>
+        {{#each event.attendees}}
+            <li>{{ this }} </li>
+            <!--<a href="/events/{{id}}">Event details...</a></p>-->
+        {{/each}}
+
+    <!--<p> {{ event.attendees}}</p>-->
+    <a href="/events/{{event.id}}/addAttendees">Edit</a>
+  </div>
 
     <!--{{#if event.published }}-->
         <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>  Published-->

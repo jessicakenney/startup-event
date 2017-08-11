@@ -71,6 +71,26 @@ public class App {
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
 
+    //get: show a form to add Attendees for Event
+    get("/events/:id/addAttendees", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(request.params("id"));
+      Event addAttendee = Event.findById(eventId);
+      model.put("addAttendee",addAttendee);
+      return new ModelAndView(model, "event-form.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //post: process a form to add Attendees
+    post("/events/:id/addAttendee", (request,response) -> {
+      Map<String, Object> model = new HashMap<>();
+      String newAttendee = request.queryParams("attendee");
+      int eventId = Integer.parseInt(request.params("id"));
+      Event editEvent = Event.findById(eventId);
+      editEvent.addAttendee(newAttendee);
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
+
+
 
 
 
