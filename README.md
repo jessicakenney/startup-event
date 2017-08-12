@@ -9,7 +9,8 @@
 Startup Weekend Event Dashboard application will provide busy event coordinators
 the ability to track their events and attendees seamlessly. Dashboard homepage
 will list scheduled events. Coordinator can click on an event to update the Event
-to change it's name. Updating attendees is a secondary feature. 
+to change it's name and or description. Additionally, attendees can be added in the
+Event details. Three events initialize the application to demonstrate functionality.
 
 ## Test Plan: 
 
@@ -31,6 +32,7 @@ to change it's name. Updating attendees is a secondary feature.
 
 ## Setup
 git clone https://github.com/jessicakenney/startup-event.git  
+bring up url: localhost:4567/events
 
 ## Support and Contact details
 email with any questions: jessicakenney@yahoo.com,
