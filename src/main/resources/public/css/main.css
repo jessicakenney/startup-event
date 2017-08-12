@@ -1,9 +1,12 @@
 .jumbotron{
-background-color:  #bad5d6;
+  background-color:  #bad5d6;
 }
 .well{
-background-color:  ##d5e5e5;
+  background-color:  ##d5e5e5;
 }
 .row{
-padding-left: 20px;
+  padding-left: 20px;
+}
+body{
+  font-family: 'Titillium Web', sans-serif;
 }
