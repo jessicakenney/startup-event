@@ -19,9 +19,9 @@ public class App {
     ArrayList<String> names1 = new ArrayList<String>(Arrays.asList("Jessica","Bart","Beth","Esti","Evan"));
     ArrayList<String> names2 = new ArrayList<String>(Arrays.asList("Kateb","Kates","Kimberly","Stephanie","Shy"));
     ArrayList<String> names3 = new ArrayList<String>(Arrays.asList("Collin","Carson","Maria","Paul","Ryan"));
-    Event event3 = new Event("What is Blockchain","What is",names1);
-    Event event1 = new Event("Blockchain Security","Description security",names2);
-    Event event2 = new Event("Blockchain Architecture","Description architecture",names3);
+    Event event3 = new Event("What is Blockchain?","Let's talk about what a ‘distributed, decentralised transaction ledger’ really means.",names1);
+    Event event1 = new Event("Blockchain Security","How to prevent the threat of hacking.",names2);
+    Event event2 = new Event("Blockchain Architecture","Legos and Blockchain.",names3);
 
    //get Dashboard homepage, shows all events
     get ("/events", (req, resp) -> {
