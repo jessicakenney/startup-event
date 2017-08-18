@@ -6,3 +6,9 @@ CREATE TABLE IF NOT EXISTS events (
   description VARCHAR,
   date DATE,
 );
+
+CREATE TABLE IF NOT EXISTS attendees (
+  id int PRIMARY KEY auto_increment,
+  name VARCHAR,
+  eventId int,
+);
