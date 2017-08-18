@@ -1,5 +1,6 @@
 package dao;
 
+import models.Attendee;
 import models.Event;
 
 import java.util.List;
@@ -12,7 +13,6 @@ public interface EventDao {
   //read
   List<Event> getAll();
   Event findById(int id);
-  //List<Attendee> findAttendeesById(int id);
 
   //update
   void update(int id, String name, String description, String date);

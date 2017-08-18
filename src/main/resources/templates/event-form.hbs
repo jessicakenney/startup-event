@@ -2,9 +2,9 @@
 
     {{#if addAttendee}}
         <h3>Add Attendee</h3>
-        <form action="/events/{{addAttendee.id}}/addAttendee" method="post">
-            <label for="attendee">Name</label>
-            <input id="attendee" name="attendee" type="text" value="{{editEvent.attendees}}">
+        <form action="/events/{{addAttendee.id}}/attendees" method="post">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
 
     {{else}}
 

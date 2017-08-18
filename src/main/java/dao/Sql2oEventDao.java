@@ -1,4 +1,5 @@
 package dao;
+import models.Attendee;
 import models.Event;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;

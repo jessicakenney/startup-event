@@ -8,16 +8,15 @@ public class Event {
   private String description;
   private String date;
   private int id;
-  private ArrayList<Attendee> attendees;
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public Event(String name, String description, String date ) {
     this.name = name;
     this.description = description;
     this.date = date;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName(){
@@ -35,6 +34,7 @@ public class Event {
   public String getDate(){
     return date;
   }
+
 
   @Override
   public boolean equals(Object o) {

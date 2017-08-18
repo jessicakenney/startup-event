@@ -6,15 +6,17 @@
      <p>{{ event.date }}</p>
     <h4>Description:</h4>
     <p> {{ event.description }}</p>
-    <a href="/events/{{ event.id }}/update">Edit</a>
+    <a href="/events/{{ event.id }}/update">Edit Event</a>
+    <br>
+    <a href="/events/{{ event.id }}/delete">DELETE Event (no undo)</a>
   </div>
 
   <div class="well">
     <h4>Attendees:</h4>
-        {{#each event.attendees }}
-            <li>{{ this }}</li>
+        {{#each attendees }}
+            <li>{{ name }}</li>
         {{/each }}
-    <a href="/events/{{event.id}}/addAttendee">Add Attendee</a>
+    <a href="/events/{{event.id}}/attendees">Add Attendee</a>
   </div>
 
 {{/partial}}
