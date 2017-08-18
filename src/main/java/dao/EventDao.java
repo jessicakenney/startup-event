@@ -15,10 +15,10 @@ public interface EventDao {
   //List<Attendee> findAttendeesById(int id);
 
   //update
-  //void update(int id, String name, String description, date/time? );
+  void update(int id, String name, String description, String date);
 
   //delete
-  //void deleteById(int id);
-  //void clearAllTasks();
+  void deleteById(int id);
+  void clearAllEvents();
 
 }
