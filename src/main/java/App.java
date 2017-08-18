@@ -138,6 +138,33 @@ public class App {
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
 
+    //get: show an individual Attendee within Event
+    get("/events/:event_id/attendees/:attendee_id", (req, res) -> {
+      Map<String, Object> model = new HashMap<>();
+      int idOfAttendeeToFind = Integer.parseInt(req.params("attendee_id"));
+      Attendee foundAttendee = attendeeDao.findById(idOfAttendeeToFind);
+      model.put("attendee", foundAttendee);
+      return new ModelAndView(model, "attendee-detail.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    /// in progress....
+    //get: show a form to update an Attendee
+    get("/attendees/:attendee_id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(request.params("attendee_id"));
+      Attendee editAttendee = attendeeDao.findById(eventId);
+      model.put("editAttendee",editAttendee);
+      return new ModelAndView(model, "attendee-form.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //post: process a form to update  an Attendee
+    post("/attendees/:attendee_id/update", (request,response) -> {
+      Map<String, Object> model = new HashMap<>();
+      String newName = request.queryParams("name");
+      int attendeeId = Integer.parseInt(request.params("attendee_id"));
+      attendeeDao.update(attendeeId,newName);
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
 
   }
 

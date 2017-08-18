@@ -14,7 +14,7 @@
   <div class="well">
     <h4>Attendees:</h4>
         {{#each attendees }}
-            <li>{{ name }}</li>
+            <li> <a href="/events/{{event.id}}/attendees/{{ id }}">{{ name }} </a></li>
         {{/each }}
     <a href="/events/{{event.id}}/attendees">Add Attendee</a>
   </div>

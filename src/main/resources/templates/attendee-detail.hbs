@@ -1,0 +1,13 @@
+{{#partial "content"}}
+    <div class="well">
+        <h4>Name:</h4>
+        <p>{{ attendee.name }}</p>
+        <br>
+        <a href="/attendees/{{ attendee.id }}/update">Edit Attendee</a>
+        <br>
+        <a href="/attendees/{{ attendee.id }}/delete">DELETE Attendee (no undo)</a>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}
