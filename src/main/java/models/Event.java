@@ -6,58 +6,59 @@ import java.util.ArrayList;
 public class Event {
   private String name;
   private String description;
-  private ArrayList<String> attendees;
-  private static ArrayList<Event> instances = new ArrayList<>();
+  private String date;
   int id;
 
-  public Event(String name, String description, ArrayList<String>attendees) {
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  private ArrayList<Attendee> attendees;
+
+  public Event(String name, String description, String date ) {
     this.name = name;
     this.description = description;
-    this.attendees = attendees;
-    instances.add(this);
-    this.id = instances.size();
+    this.date = date;
   }
 
   public String getName(){
     return name;
   }
+
   public String getDescription(){
     return description;
-  }
-  public ArrayList<String> getAttendees(){
-    return attendees;
-  }
-
-  public static ArrayList<Event> getAll() {
-    return instances;
-  }
-
-  public static void clearAll (){
-    instances.clear();
   }
 
   public int getId(){
     return id;
   }
 
-  public static Event findById(int id){
-   return instances.get(id -1);
+  public String getDate(){
+    return date;
   }
 
-  public void updateName(String newName){
-    this.name = newName;
-  }
-  public void updateDescription(String newDescription){
-    this.description = newDescription;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Event event = (Event) o;
+
+    if (id != event.id) return false;
+    if (!name.equals(event.name)) return false;
+    if (!description.equals(event.description)) return false;
+    if (!date.equals(event.date)) return false;
+    return attendees.equals(event.attendees);
   }
 
-  public void deleteAttendee(String attendee ){
-    attendees.remove(attendee);
+  @Override
+  public int hashCode() {
+    int result = name.hashCode();
+    result = 31 * result + description.hashCode();
+    result = 31 * result + date.hashCode();
+    result = 31 * result + id;
+    result = 31 * result + attendees.hashCode();
+    return result;
   }
-
-  public void addAttendee(String attendee ){
-    attendees.add(attendee);
-  }
-
 }
 
