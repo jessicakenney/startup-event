@@ -32,7 +32,56 @@ public class Sql2oAttendeeDao implements AttendeeDao {
     }
   }
 
+  @Override
+  public List<Attendee> getAll() {
+    try(Connection con = sql2o.open()){
+      return con.createQuery("SELECT * FROM attendees") //raw sql
+              .executeAndFetch(Attendee.class); //fetch a list
+    }
+  }
 
+  @Override
+  public Attendee findById(int id) {
+    try(Connection con = sql2o.open()){
+      return con.createQuery("SELECT * FROM attendees WHERE id = :id")
+              .addParameter("id", id) //key/value pair, key must match above
+              .executeAndFetchFirst(Attendee.class); //fetch an individual item
+    }
+  }
 
+  @Override
+  public void update(int id, String newName){
+    String sql = "UPDATE attendees SET name = :name WHERE id=:id";
+    try(Connection con = sql2o.open()){
+      con.createQuery(sql)
+              .addParameter("name", newName)
+              .addParameter("id", id)
+              .executeUpdate();
+    } catch (Sql2oException ex) {
+      System.out.println(ex);
+    }
+  }
+
+  @Override
+  public void deleteById(int id) {
+    String sql = "DELETE from attendees WHERE id=:id";
+    try (Connection con = sql2o.open()) {
+      con.createQuery(sql)
+              .addParameter("id", id)
+              .executeUpdate();
+    } catch (Sql2oException ex){
+      System.out.println(ex);
+    }
+  }
+  @Override
+  public void clearAllAttendees() {
+    String sql = "DELETE from attendees";
+    try (Connection con = sql2o.open()) {
+      con.createQuery(sql)
+              .executeUpdate();
+    } catch (Sql2oException ex){
+      System.out.println(ex);
+    }
+  }
 
 }

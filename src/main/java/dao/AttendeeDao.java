@@ -8,14 +8,14 @@ public interface AttendeeDao {
     void add (Attendee attendee);
 
     //read
-    //List<Attendee> getAll();
-    //Attendee findById(int id);
+    List<Attendee> getAll();
+    Attendee findById(int id);
 
     //update
-    //void update(int id, String name, String description, String date);
+    void update(int id, String name);
 
     //delete
-    //void deleteById(int id);
-    //void clearAllAttendees();
+    void deleteById(int id);
+    void clearAllAttendees();
 
 }

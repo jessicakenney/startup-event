@@ -40,6 +40,46 @@ public class Sql2oAttendeeDaoTest {
     attendeeDao.add(attendee);
     assertEquals (1,attendee.getId());
   }
+  @Test
+  public void getAll_allAttendeesAreFound () throws Exception {
+    Attendee attendee = getTestAttendee();
+    Attendee anotherAttendee = new Attendee ("Sam Sheridan",1);
+    attendeeDao.add(attendee);
+    attendeeDao.add(anotherAttendee);
+    int number = attendeeDao.getAll().size();
+    assertEquals(2,number );
+  }
+  @Test
+  public void getAll_noAttendeesAreFound () throws Exception {
+    int number = attendeeDao.getAll().size();
+    assertEquals(0,number );
+  }
 
+  @Test
+  public void update_correctlyUpdates () {
+    Attendee attendee = getTestAttendee();
+    attendeeDao.add(attendee);
+    attendeeDao.update(attendee.getId(), "newName");
+    Attendee updatedAttendee = attendeeDao.findById(attendee.getId());
+    assertEquals("newName",updatedAttendee.getName());
+  }
+
+  @Test
+  public void deleteById_deletesVeryWell () {
+    Attendee attendee = getTestAttendee();
+    attendeeDao.add(attendee);
+    attendeeDao.deleteById(attendee.getId());
+    assertEquals(0,attendeeDao.getAll().size());
+  }
+
+  @Test
+  public void clearAllAttendees() {
+    Attendee attendee = getTestAttendee();
+    Attendee anotherAttendee = new Attendee ("Attendee2",1);
+    attendeeDao.add(attendee);
+    attendeeDao.add(anotherAttendee);
+    attendeeDao.clearAllAttendees();
+    assertEquals(0, attendeeDao.getAll().size());
+  }
 
 }
