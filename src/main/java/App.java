@@ -57,44 +57,41 @@ public class App {
       String name = request.queryParams("name");
       String description = request.queryParams("description");
       String date = request.queryParams("date");
-      //ArrayList<String> names = new ArrayList<String>(Arrays.asList());
       Event newEvent = new Event(name,description,date);
       eventDao.add(newEvent);
       model.put("event", newEvent);
-      System.out.println("DEBUG--->"+ newEvent.getName());
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
 
-//    //get: show an individual Event
-//    get("/events/:id", (request, response) ->  {
-//      Map<String, Object> model = new HashMap<>();
-//      int eventId = Integer.parseInt(request.params("id"));
-//      Event findEvent = Event.findById(eventId);
-//      model.put("event", findEvent);
-//      return new ModelAndView(model, "event-detail.hbs");
-//    }, new HandlebarsTemplateEngine());
-//
-//    //get: show a form to update a Event
-//    get("/events/:id/update", (request, response) -> {
-//      Map<String, Object> model = new HashMap<>();
-//      int eventId = Integer.parseInt(request.params("id"));
-//      Event editEvent = Event.findById(eventId);
-//      model.put("editEvent", editEvent);
-//      return new ModelAndView(model, "event-form.hbs");
-//    }, new HandlebarsTemplateEngine());
-//
-//    //post: process a form to update Event
-//    post("/events/:id/update", (request,response) -> {
-//      Map<String, Object> model = new HashMap<>();
-//      String newName = request.queryParams("name");
-//      String newDescription = request.queryParams("description");
-//      int eventId = Integer.parseInt(request.params("id"));
-//      Event editEvent = Event.findById(eventId);
-//      editEvent.updateName(newName);
-//      editEvent.updateDescription(newDescription);
-//      return new ModelAndView(model, "success.hbs");
-//    }, new HandlebarsTemplateEngine());
-//
+    //get: show an individual Event
+    get("/events/:id", (request, response) ->  {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(request.params("id"));
+      Event findEvent = eventDao.findById(eventId);
+      model.put("event", findEvent);
+      return new ModelAndView(model, "event-detail.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //get: show a form to update a Event
+    get("/events/:id/update", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(request.params("id"));
+      Event editEvent = eventDao.findById(eventId);
+      model.put("editEvent", editEvent);
+      return new ModelAndView(model, "event-form.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //post: process a form to update Event
+    post("/events/:id/update", (request,response) -> {
+      Map<String, Object> model = new HashMap<>();
+      String newName = request.queryParams("name");
+      String newDescription = request.queryParams("description");
+      String newDate = request.queryParams("date");
+      int eventId = Integer.parseInt(request.params("id"));
+      eventDao.update(eventId,newName,newDescription,newDate);
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
+
 //    //get: show a form to add Attendees for Event
 //    get("/events/:id/addAttendee", (request, response) -> {
 //      Map<String, Object> model = new HashMap<>();

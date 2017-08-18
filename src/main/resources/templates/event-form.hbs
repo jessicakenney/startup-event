@@ -13,21 +13,26 @@
             <form action="/events/{{editEvent.id}}/update" method="post">
                 <label for="name">Event Name</label>
                 <input id="name" name="name" type="text" value="{{editEvent.name}}">
+                <br>
                 <label for="description">Event Description</label>
                 <input id="description" name="description" type="text" value="{{editEvent.description}}">
+                <br>
                 <label for="date">Enter Date</label>
-                <input id="date" name="date" type="text" required>
-
+                <input id="date" name="date" type="text" value="{{editEvent.date}}" required>
+                <br>
         {{else}}
 
         <h3>Add a New Event</h3>
         <form action="/events/new" method="post">
             <label for="name">Enter Name</label>
             <input id="name" name="name" type="text" required>
+            <br>
             <label for="description">Enter Description</label>
             <input id="description" name="description" type="text" required>
+            <br>
             <label for="date">Enter Date</label>
             <input id="date" name="date" type="text" required>
+            <br>
         {{/if}}
     {{/if}}
 
