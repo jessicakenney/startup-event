@@ -1,11 +1,12 @@
+import dao.EventDao;
+import dao.Sql2oAttendeeDao;
+import dao.Sql2oEventDao;
 import models.Event;
+import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -15,6 +16,11 @@ public class App {
 
   public static void main(String[] args) {
     staticFileLocation ("/public");
+    String connectionString = "jdbc:h2:~/startup.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+    Sql2o sql2o = new Sql2o(connectionString, "", "");
+    Sql2oEventDao eventDao = new Sql2oEventDao(sql2o);
+    Sql2oAttendeeDao attendeeDao = new Sql2oAttendeeDao(sql2o);
+
 
 //    ArrayList<String> names1 = new ArrayList<String>(Arrays.asList("Jessica","Bart","Beth","Esti","Evan"));
 //    ArrayList<String> names2 = new ArrayList<String>(Arrays.asList("Kateb","Kates","Kimberly","Stephanie","Shy"));
@@ -22,14 +28,14 @@ public class App {
 //    Event event3 = new Event("What is Blockchain?","Let's talk about what a ‘distributed, decentralised transaction ledger’ really means.",names1);
 //    Event event1 = new Event("Blockchain Security","How to prevent the threat of hacking.",names2);
 //    Event event2 = new Event("Blockchain Architecture","Legos and Blockchain.",names3);
-//
-//   //get Dashboard homepage, shows all events
-//    get ("/events", (req, resp) -> {
-//      Map<String, Object> model = new HashMap<>();
-//      ArrayList<Event> events = Event.getAll();
-//      model.put("events", events);
-//      return new ModelAndView(model, "index.hbs");
-//    }, new HandlebarsTemplateEngine());
+
+   //get Dashboard homepage, shows all events
+    get ("/events", (req, resp) -> {
+      Map<String, Object> model = new HashMap<>();
+      List<Event> events = eventDao.getAll();
+      model.put("events", events);
+      return new ModelAndView(model, "index.hbs");
+    }, new HandlebarsTemplateEngine());
 //
 //    //get Startup Weekend Event Page
 //    get ("/", (req, resp) -> {
