@@ -29,6 +29,12 @@ public class App {
 //    Event event1 = new Event("Blockchain Security","How to prevent the threat of hacking.",names2);
 //    Event event2 = new Event("Blockchain Architecture","Legos and Blockchain.",names3);
 
+    //get Startup Weekend Event Page
+    get ("/", (req, resp) -> {
+      Map<String, Object> model = new HashMap<>();
+      return new ModelAndView(model, "event.hbs");
+    }, new HandlebarsTemplateEngine());
+
    //get Dashboard homepage, shows all events
     get ("/events", (req, resp) -> {
       Map<String, Object> model = new HashMap<>();
@@ -36,30 +42,29 @@ public class App {
       model.put("events", events);
       return new ModelAndView(model, "index.hbs");
     }, new HandlebarsTemplateEngine());
-//
-//    //get Startup Weekend Event Page
-//    get ("/", (req, resp) -> {
-//      Map<String, Object> model = new HashMap<>();
-//      return new ModelAndView(model, "event.hbs");
-//    }, new HandlebarsTemplateEngine());
-//
-//    //get: show new Event form
-//    get("/events/new", (request, response) -> {
-//      Map<String, Object> model = new HashMap<>();
-//      return new ModelAndView(model, "event-form.hbs");
-//    }, new HandlebarsTemplateEngine());
-//
-//    //post: process new Event form
-//    post("/events/new", (request, response) -> {
-//      Map<String, Object> model = new HashMap<String, Object>();
-//      String name = request.queryParams("name");
-//      String description = request.queryParams("description");
-//      ArrayList<String> names = new ArrayList<String>(Arrays.asList());
-//      Event newEvent = new Event(name,description,names);
-//      model.put("event", newEvent);
-//      return new ModelAndView(model, "success.hbs");
-//    }, new HandlebarsTemplateEngine());
-//
+
+
+    //get: show new Event form
+    get("/events/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      return new ModelAndView(model, "event-form.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //post: process new Event form
+    post("/events/new", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      String name = request.queryParams("name");
+      String description = request.queryParams("description");
+      String date = request.queryParams("date");
+      //ArrayList<String> names = new ArrayList<String>(Arrays.asList());
+      Event newEvent = new Event(name,description,date);
+      eventDao.add(newEvent);
+      model.put("event", newEvent);
+      System.out.println("DEBUG--->"+ newEvent.getName());
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
+
 //    //get: show an individual Event
 //    get("/events/:id", (request, response) ->  {
 //      Map<String, Object> model = new HashMap<>();
