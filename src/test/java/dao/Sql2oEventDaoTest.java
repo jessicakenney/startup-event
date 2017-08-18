@@ -29,15 +29,40 @@ public class Sql2oEventDaoTest {
     eventDao = new Sql2oEventDao(sql2o);
     conn = sql2o.open();
   }
+
   @After
   public void tearDown() throws Exception {
     conn.close();
   }
+
   @Test
   public void addingEventSetsId() throws Exception   {
     Event event = getTestEvent();
     eventDao.add(event);
     assertEquals (1,event.getId());
+  }
+
+  @Test
+  public void existingEventsCanBeFoundById() throws Exception {
+    Event event = getTestEvent();
+    eventDao.add(event);
+    Event foundEvent = eventDao.findById(event.getId());
+    assertEquals(event, foundEvent);
+  }
+
+  @Test
+  public void getAll_allEventsAreFound () throws Exception {
+    Event event = getTestEvent();
+    Event anotherEvent = new Event ("Event2", "description2", "2017-11-03");
+    eventDao.add(event);
+    eventDao.add(anotherEvent);
+    int number = eventDao.getAll().size();
+    assertEquals(2,number );
+  }
+  @Test
+  public void getAll_noEventsAreFound () throws Exception {
+    int number = eventDao.getAll().size();
+    assertEquals(0,number );
   }
 
 

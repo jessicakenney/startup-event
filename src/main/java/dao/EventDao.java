@@ -10,8 +10,8 @@ public interface EventDao {
   void add (Event event);
 
   //read
-  //List<Event> getAll();
-  //Task findById(int id);
+  List<Event> getAll();
+  Event findById(int id);
   //List<Attendee> findAttendeesById(int id);
 
   //update

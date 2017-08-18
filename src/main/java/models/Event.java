@@ -7,13 +7,12 @@ public class Event {
   private String name;
   private String description;
   private String date;
-  int id;
+  private int id;
+  private ArrayList<Attendee> attendees;
 
   public void setId(int id) {
     this.id = id;
   }
-
-  private ArrayList<Attendee> attendees;
 
   public Event(String name, String description, String date ) {
     this.name = name;
@@ -47,8 +46,7 @@ public class Event {
     if (id != event.id) return false;
     if (!name.equals(event.name)) return false;
     if (!description.equals(event.description)) return false;
-    if (!date.equals(event.date)) return false;
-    return attendees.equals(event.attendees);
+    return date.equals(event.date);
   }
 
   @Override
@@ -57,7 +55,6 @@ public class Event {
     result = 31 * result + description.hashCode();
     result = 31 * result + date.hashCode();
     result = 31 * result + id;
-    result = 31 * result + attendees.hashCode();
     return result;
   }
 }
