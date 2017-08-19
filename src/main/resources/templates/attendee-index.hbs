@@ -1,0 +1,23 @@
+{{#partial "content"}}
+<h2>Attendee List</h2>
+
+{{#if attendees}}
+    {{#each attendees}}
+            <div class = "well">
+                <p>{{name}} </p>
+            </div>
+    {{/each}}
+{{else}}
+    <p>No Attendees Entered</p>
+{{/if}}
+
+<footer class="footer">
+    <div class="container">
+        <br>
+        <a href="/events/{{id}}/delete">DELETE All Events (no undo)</a></p>
+        <a href="/attendees/delete">DELETE All Attendees (no undo)</a></p>
+    </div>
+</footer>
+{{/partial}}
+
+{{> layout.hbs}}

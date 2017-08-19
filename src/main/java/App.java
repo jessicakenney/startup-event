@@ -37,6 +37,27 @@ public class App {
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
 
+    //get: delete all Attendees of All Events
+    get("/attendees/delete", (req, res) -> {
+      Map<String, Object> model = new HashMap<>();
+      attendeeDao.clearAllAttendees();
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
+
+    //get: delete all attendees of a specific event
+    get("/events/:event_id/attendees/delete", (req, res) -> {
+      Map<String, Object> model = new HashMap<>();
+      int eventId = Integer.parseInt(req.params("event_id"));
+      List<Attendee> attendees = attendeeDao.getAll();
+      for ( Attendee attendee : attendees) {
+        if (attendee.getEventId() == eventId) {
+          System.out.println("DEBUG___DELETING"+eventId);
+          attendeeDao.deleteById(eventId);
+        }
+      }
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
+
     //get Startup Weekend Event Page
     get ("/", (req, resp) -> {
       Map<String, Object> model = new HashMap<>();
@@ -51,6 +72,15 @@ public class App {
       return new ModelAndView(model, "index.hbs");
     }, new HandlebarsTemplateEngine());
 
+    //get shows all attendees (independent of event)
+    get ("/attendees", (req, resp) -> {
+      Map<String, Object> model = new HashMap<>();
+      List<Attendee> attendees = attendeeDao.getAll();
+      model.put("attendees", attendees);
+      return new ModelAndView(model, "attendee-index.hbs");
+    }, new HandlebarsTemplateEngine());
+
+
     //get: show new Event form
     get("/events/new", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
@@ -60,7 +90,6 @@ public class App {
     //post: process new Event form
     post("/events/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-
       String name = request.queryParams("name");
       String description = request.queryParams("description");
       String date = request.queryParams("date");
@@ -109,11 +138,10 @@ public class App {
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
 
-    //get: delete an Individual category
+    //get: delete an Individual event
     get("/events/:event_id/delete", (req, res) -> {
       Map<String, Object> model = new HashMap<>();
       int idOfEventToDelete = Integer.parseInt(req.params("event_id"));
-      eventDao.findById(idOfEventToDelete);
       eventDao.deleteById(idOfEventToDelete);
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
@@ -165,6 +193,17 @@ public class App {
       attendeeDao.update(attendeeId,newName);
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
+
+    //get: delete an Attendee of a specific event
+    get("/attendees/:attendee_id/delete", (req, res) -> {
+      Map<String, Object> model = new HashMap<>();
+      int idOfAttendeeToDelete = Integer.parseInt(req.params("attendee_id"));
+      attendeeDao.deleteById(idOfAttendeeToDelete);
+      return new ModelAndView(model, "success.hbs");
+    }, new HandlebarsTemplateEngine());
+
+
+
 
   }
 
