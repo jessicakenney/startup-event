@@ -67,6 +67,7 @@ public class Sql2oAttendeeDaoTest {
   @Test
   public void deleteById_deletesVeryWell () {
     Attendee attendee = getTestAttendee();
+    Attendee anotherAttendee = new Attendee ("Sam Sheridan",1);
     attendeeDao.add(attendee);
     attendeeDao.deleteById(attendee.getId());
     assertEquals(0,attendeeDao.getAll().size());

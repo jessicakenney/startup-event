@@ -43,8 +43,8 @@ public class App {
       List<Attendee> attendees = attendeeDao.getAll();
       for ( Attendee attendee : attendees) {
         if (attendee.getEventId() == eventId) {
-          //System.out.println("DEBUG___DELETING"+eventId);
-          attendeeDao.deleteById(eventId);
+          int attendeeIdToDelete = attendee.getId();
+          attendeeDao.deleteById(attendeeIdToDelete);
         }
       }
       return new ModelAndView(model, "success.hbs");
@@ -193,9 +193,6 @@ public class App {
       attendeeDao.deleteById(idOfAttendeeToDelete);
       return new ModelAndView(model, "success.hbs");
     }, new HandlebarsTemplateEngine());
-
-
-
 
   }
 
