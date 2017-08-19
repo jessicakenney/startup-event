@@ -22,14 +22,6 @@ public class App {
     Sql2oEventDao eventDao = new Sql2oEventDao(sql2o);
     Sql2oAttendeeDao attendeeDao = new Sql2oAttendeeDao(sql2o);
 
-
-//    ArrayList<String> names1 = new ArrayList<String>(Arrays.asList("Jessica","Bart","Beth","Esti","Evan"));
-//    ArrayList<String> names2 = new ArrayList<String>(Arrays.asList("Kateb","Kates","Kimberly","Stephanie","Shy"));
-//    ArrayList<String> names3 = new ArrayList<String>(Arrays.asList("Collin","Carson","Maria","Paul","Ryan"));
-//    Event event3 = new Event("What is Blockchain?","Let's talk about what a ‘distributed, decentralised transaction ledger’ really means.",names1);
-//    Event event1 = new Event("Blockchain Security","How to prevent the threat of hacking.",names2);
-//    Event event2 = new Event("Blockchain Architecture","Legos and Blockchain.",names3);
-
     //get: delete all Events
     get("/events/delete", (req, res) -> {
       Map<String, Object> model = new HashMap<>();
@@ -51,7 +43,7 @@ public class App {
       List<Attendee> attendees = attendeeDao.getAll();
       for ( Attendee attendee : attendees) {
         if (attendee.getEventId() == eventId) {
-          System.out.println("DEBUG___DELETING"+eventId);
+          //System.out.println("DEBUG___DELETING"+eventId);
           attendeeDao.deleteById(eventId);
         }
       }
