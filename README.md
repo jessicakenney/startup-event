@@ -1,6 +1,6 @@
 # Startup Weekend Event Dashboard 
 
-##### Epicodus Section: Java Week2: Web Applications 
+##### Epicodus Section: Java Week2 and 3: Web Applications and Database Basics
 
 ### By Jessica Sheridan
 
@@ -8,15 +8,16 @@
 
 Startup Weekend Event Dashboard application will provide busy event coordinators
 the ability to track their events and attendees seamlessly. Dashboard homepage
-will list scheduled events. Coordinator can click on an event to update the Event
-to change it's name and or description. Additionally, attendees can be added in the
-Event details. Three events initialize the application to demonstrate functionality.
+will list all scheduled events. Coordinator can click on an event to update the Event
+to change it's name,description, or scheduled time. Additionally, new attendees can 
+be added in the Event details, and individual attendees clicked on to edit or delete
+them. 
 
 ## Test Plan: 
 
 | Behavior      | Input | Output |
 | ------------- | ------------- | ------------- |
-| New Event gets created| event1  | true |
+| New Event gets created with id| event1  | true |
 | New Event created with name |[event1]|[event1]|
 | New Event created with description |[description1] |[description1]|
 | New Event created with attendees |[name1,name2,name3] | [name1,name2,name3] |
@@ -27,12 +28,17 @@ Event details. Three events initialize the application to demonstrate functional
 | Event name update  |[event1, editName] | [editName] |
 | Delete attendee  |[name1, name2] | [name1] |
 | Add attendee  |[name1,name2] | [name1,name2,name3] |
-
+----------------|-------------|-----------------------|
+| New Attendee gets created with id| attendee  | true |
+| Two Attendees created successfully |[attendee, attendee1] | true |
+| Attendee update works sucessfully| [name1] | [name-editted] |
+| Attendee deletebyId  [name1] | [] |
+| Attendee clearAllAttendees  [name1,name2] | [] |
 
 
 ## Setup
 git clone https://github.com/jessicakenney/startup-event.git  
-bring up url: localhost:4567/events
+bring up url: localhost:4567/
 
 ## Support and Contact details
 email with any questions: jessicakenney@yahoo.com,
