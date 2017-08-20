@@ -9,6 +9,8 @@ public interface AttendeeDao {
 
     //read
     List<Attendee> getAll();
+    List<Attendee> getAllNameOrdered();
+    List<Attendee> getAllEventOrdered();
     Attendee findById(int id);
 
     //update

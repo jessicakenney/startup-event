@@ -1,4 +1,3 @@
-import dao.EventDao;
 import dao.Sql2oAttendeeDao;
 import dao.Sql2oEventDao;
 import models.Attendee;
@@ -6,7 +5,6 @@ import models.Event;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-
 import java.util.*;
 
 import static spark.Spark.get;
@@ -21,6 +19,26 @@ public class App {
     Sql2o sql2o = new Sql2o(connectionString, "", "");
     Sql2oEventDao eventDao = new Sql2oEventDao(sql2o);
     Sql2oAttendeeDao attendeeDao = new Sql2oAttendeeDao(sql2o);
+
+    Event event1 = new Event("What is Blockchain?", "Let's talk about what a 'distrubuted, decentralised transaction ledger’ really means.", "2017-10-22");
+    Event event2 = new Event("Blockchain Security", "How to prevent the threat of hacking.", "2017-10-22");
+    Event event3 = new Event("Blockchain Architecture", "Legos and Blockchain.", "2017-10-23");
+
+    eventDao.add(event1);
+    eventDao.add(event2);
+    eventDao.add(event3);
+
+    Attendee attendee0 = new Attendee("Ann", 1);
+    Attendee attendee1 = new Attendee("Jessica", 1);
+    Attendee attendee2 = new Attendee( "Bart", 2);
+    Attendee attendee3 = new Attendee( "Kate", 3);
+    Attendee attendee4 = new Attendee( "Barry", 1);
+
+    attendeeDao.add(attendee0);
+    attendeeDao.add(attendee1);
+    attendeeDao.add(attendee2);
+    attendeeDao.add(attendee3);
+    attendeeDao.add(attendee4);
 
     //get: delete all Events
     get("/events/delete", (req, res) -> {
@@ -64,14 +82,29 @@ public class App {
       return new ModelAndView(model, "index.hbs");
     }, new HandlebarsTemplateEngine());
 
-    //get shows all attendees (independent of event)
-    get ("/attendees", (req, resp) -> {
+    //get shows all attendees ordered by Name
+    get ("/attendeesbyname", (req, resp) -> {
       Map<String, Object> model = new HashMap<>();
-      List<Attendee> attendees = attendeeDao.getAll();
-      model.put("attendees", attendees);
+      Map<String, String> attendeesEventName = new LinkedHashMap<>();
+      List<Attendee> attendees = attendeeDao.getAllNameOrdered();
+      for (Attendee attendee : attendees) {
+        attendeesEventName.put( attendee.getName(), eventDao.findById(attendee.getEventId()).getName() );
+      }
+      model.put("attendeesbyname", attendeesEventName);
       return new ModelAndView(model, "attendee-index.hbs");
     }, new HandlebarsTemplateEngine());
 
+    //get shows all attendees ordered by Event
+    get ("/attendeesbyevent", (req, resp) -> {
+      Map<String, Object> model = new HashMap<>();
+      Map<String, String> attendeesEventName = new LinkedHashMap<>();
+      List<Attendee> attendees = attendeeDao.getAllEventOrdered();
+      for (Attendee attendee : attendees) {
+        attendeesEventName.put( attendee.getName(), eventDao.findById(attendee.getEventId()).getName() );
+      }
+      model.put("attendeesbyevent", attendeesEventName);
+      return new ModelAndView(model, "attendee-index.hbs");
+    }, new HandlebarsTemplateEngine());
 
     //get: show new Event form
     get("/events/new", (request, response) -> {
@@ -97,15 +130,8 @@ public class App {
       int eventId = Integer.parseInt(request.params("event_id"));
       Event findEvent = eventDao.findById(eventId);
       model.put("event", findEvent);
-
       //include also all the attendees for specific event
-      List<Attendee> eventAttendees= new ArrayList<>();
-      List<Attendee> attendees = attendeeDao.getAll();
-      for ( Attendee attendee : attendees) {
-        if (attendee.getEventId() == eventId) {
-          eventAttendees.add(attendee);
-        }
-      }
+      List<Attendee> eventAttendees = eventDao.getAllAttendeesByEvent(eventId);
       model.put("attendees", eventAttendees);
       return new ModelAndView(model, "event-detail.hbs");
     }, new HandlebarsTemplateEngine());
@@ -153,6 +179,7 @@ public class App {
       String name = request.queryParams("name");
       int eventId = Integer.parseInt(request.params("event_id"));
       Attendee newAttendee = new Attendee(name,eventId);
+      Event event = eventDao.findById(eventId);
       attendeeDao.add(newAttendee);
       model.put("attendee", newAttendee);
       return new ModelAndView(model, "success.hbs");
@@ -167,7 +194,6 @@ public class App {
       return new ModelAndView(model, "attendee-detail.hbs");
     }, new HandlebarsTemplateEngine());
 
-    /// in progress....
     //get: show a form to update an Attendee
     get("/attendees/:attendee_id/update", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
@@ -195,5 +221,4 @@ public class App {
     }, new HandlebarsTemplateEngine());
 
   }
-
 }

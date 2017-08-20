@@ -40,6 +40,7 @@ public class Sql2oAttendeeDaoTest {
     attendeeDao.add(attendee);
     assertEquals (1,attendee.getId());
   }
+
   @Test
   public void getAll_allAttendeesAreFound () throws Exception {
     Attendee attendee = getTestAttendee();
@@ -49,6 +50,7 @@ public class Sql2oAttendeeDaoTest {
     int number = attendeeDao.getAll().size();
     assertEquals(2,number );
   }
+
   @Test
   public void getAll_noAttendeesAreFound () throws Exception {
     int number = attendeeDao.getAll().size();
@@ -82,5 +84,27 @@ public class Sql2oAttendeeDaoTest {
     attendeeDao.clearAllAttendees();
     assertEquals(0, attendeeDao.getAll().size());
   }
+  @Test
+  public void getAllNameOrdered_worksCorrectly_True () throws Exception {
+    Attendee attendee = getTestAttendee();
+    Attendee anotherAttendee = new Attendee ("Ann",1);
+    attendeeDao.add(attendee);
+    attendeeDao.add(anotherAttendee);
+    assertEquals("Ann", attendeeDao.getAllNameOrdered().get(0).getName());
+    assertEquals("Jessica Sheridan", attendeeDao.getAllNameOrdered().get(1).getName());
+  }
+  @Test
+  public void getAllEventOrdered_worksCorrectly_True () throws Exception {
+    Attendee attendee = getTestAttendee();
+    Attendee anotherAttendee0 = new Attendee ("Ann",2);
+    Attendee anotherAttendee = new Attendee ("Jude",1);
+    attendeeDao.add(attendee);
+    attendeeDao.add(anotherAttendee0);
+    attendeeDao.add(anotherAttendee);
+    assertEquals(1, attendeeDao.getAllEventOrdered().get(0).getEventId());
+    assertEquals(1, attendeeDao.getAllEventOrdered().get(1).getEventId());
+    assertEquals(2, attendeeDao.getAllEventOrdered().get(2).getEventId());
+  }
+
 
 }

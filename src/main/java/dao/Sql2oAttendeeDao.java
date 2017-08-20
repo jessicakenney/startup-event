@@ -41,6 +41,22 @@ public class Sql2oAttendeeDao implements AttendeeDao {
   }
 
   @Override
+  public List<Attendee> getAllNameOrdered() {
+    try(Connection con = sql2o.open()){
+      return con.createQuery("SELECT * FROM attendees ORDER BY name") //raw sql
+              .executeAndFetch(Attendee.class); //fetch a list
+    }
+  }
+
+  @Override
+  public List<Attendee> getAllEventOrdered() {
+    try(Connection con = sql2o.open()){
+      return con.createQuery("SELECT * FROM attendees ORDER BY eventid") //raw sql
+              .executeAndFetch(Attendee.class); //fetch a list
+    }
+  }
+
+  @Override
   public Attendee findById(int id) {
     try(Connection con = sql2o.open()){
       return con.createQuery("SELECT * FROM attendees WHERE id = :id")

@@ -21,17 +21,19 @@
             <h1>StartUp Dashboard</h1>
         </div>
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="/events">All Events</a></li>
-            <li role="presentation" ><a href="/attendees">All Attendees</a></li>
+            <li role="presentation" class="active"><a href="/">Startup Weekend Event Details</a></li>
+            <li role="presentation" ><a href="/events">All Events</a></li>
             <li role="presentation" ><a href="/events/new">Add Event</a></li>
-            <li role="presentation"><a href="/">Startup Weekend Event Details</a></li>
+            <li role="presentation" ><a href="/attendeesbyname">All Attendees(Name Ordered)</a></li>
+            <li role="presentation" ><a href="/attendeesbyevent">All Attendees(Event Ordered)</a></li>
         </ul>
 
         <div class="row">
-        {{#block "content"}}
+            {{#block "content"}}
 
-        {{/block}}
+            {{/block}}
         </div>
+    </div>
 
     <!--end main template-->
         {{#block "footer"}}

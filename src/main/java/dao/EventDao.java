@@ -13,6 +13,7 @@ public interface EventDao {
   //read
   List<Event> getAll();
   Event findById(int id);
+  List<Attendee> getAllAttendeesByEvent(int eventId);
 
   //update
   void update(int id, String name, String description, String date);

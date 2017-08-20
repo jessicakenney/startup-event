@@ -5,11 +5,11 @@
     {{#if events}}
         {{#each events}}
         <div class="col-md-4">
-        <div class = "well">
-            <p>{{name}}
-            <p>{{date}}</p>
-            <p>{{description}}</p>
-            <a href="/events/{{id}}">Event details...</a></p>
+        <div class = "well" id="all-events">
+            <p>{{ date }}</p>
+            <h4>{{ name }}</h4>
+            <p><em>{{ description }}</em></p>
+            <a href="/events/{{id}}">Event details</a></p>
         </div>
         </div>
         {{/each}}

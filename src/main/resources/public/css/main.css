@@ -1,11 +1,23 @@
 .jumbotron{
   background-color:  #bad5d6;
 }
-.well{
+.well#all-attendees{
   background-color:  ##d5e5e5;
+  display: block;
+  width: 250px;
+}
+.well#all-events{
+  background-color:  ##d5e5e5;
+  display: block;
+  height: 175px;
 }
 .row{
   padding-left: 20px;
+}
+input{
+  display: block;
+  width:    50%;
+
 }
 body{
   font-family: 'Titillium Web', sans-serif;

@@ -1,15 +1,27 @@
 {{#partial "content"}}
 <h2>Attendee List</h2>
 
-{{#if attendees}}
-    {{#each attendees}}
-            <div class = "well">
-                <p>{{name}} </p>
+{{#if attendeesbyname}}
+    <h3>Ordered By Name</h3>
+    {{#each attendeesbyname}}
+            <div class = "well" id="all-attendees">
+                <p>{{@key}} [{{this}}] </p>
             </div>
     {{/each}}
+
 {{else}}
-    <p>No Attendees Entered</p>
+    {{#if attendeesbyevent}}
+        <h3>Ordered By Event</h3>
+        {{#each attendeesbyevent}}
+            <div class = "well" id="all-attendees">
+                <p>{{@key}} [{{this}}] </p>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No Attendees Entered</p>
+    {{/if}}
 {{/if}}
+
 
 <footer class="footer">
     <div class="container">

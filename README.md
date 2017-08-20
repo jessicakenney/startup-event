@@ -13,7 +13,7 @@ to change it's name,description, or scheduled time. Additionally, new attendees 
 be added in the Event details, and individual attendees clicked on to edit or delete
 them. 
 
-## Test Plan: 
+## Test Plan 
 
 | Behavior      | Input | Output |
 | ------------- | ------------- | ------------- |
@@ -38,7 +38,7 @@ them.
 
 ## Setup
 git clone https://github.com/jessicakenney/startup-event.git  
-bring up url: localhost:4567/
+bring up url: localhost:4567
 
 ## Support and Contact details
 email with any questions: jessicakenney@yahoo.com,

@@ -1,5 +1,6 @@
 package dao;
 
+import models.Attendee;
 import models.Event;
 import org.junit.After;
 import org.junit.Before;
@@ -8,11 +9,14 @@ import org.sql2o.Sql2o;
 import org.sql2o.Connection;
 
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class Sql2oEventDaoTest {
 
  private Sql2oEventDao eventDao;
+ private Sql2oAttendeeDao attendeeDao;
  private Connection conn;
 
  public Event getTestEvent(){
@@ -27,6 +31,7 @@ public class Sql2oEventDaoTest {
     String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
     Sql2o sql2o = new Sql2o(connectionString, "", "");
     eventDao = new Sql2oEventDao(sql2o);
+    attendeeDao = new Sql2oAttendeeDao(sql2o);
     conn = sql2o.open();
   }
 
@@ -59,10 +64,24 @@ public class Sql2oEventDaoTest {
     int number = eventDao.getAll().size();
     assertEquals(2,number );
   }
+
   @Test
   public void getAll_noEventsAreFound () throws Exception {
     int number = eventDao.getAll().size();
     assertEquals(0,number );
+  }
+
+  @Test
+  public void getAllAttendeesByEvent () throws Exception {
+    Event event = getTestEvent();
+    eventDao.add(event);
+    int eventId = event.getId();
+    Attendee attendee1 = new Attendee("ann",eventId);
+    Attendee attendee2 = new Attendee("bob",eventId);
+    attendeeDao.add(attendee1);
+    attendeeDao.add(attendee2);
+    List<Attendee> allAttendees = eventDao.getAllAttendeesByEvent(eventId);
+    assertEquals(2,allAttendees.size());
   }
 
   @Test
